@@ -4,8 +4,6 @@ import { AppComponent } from './app/app.component';
 import {setupWorker} from 'msw/browser';
 import {http, HttpResponse} from 'msw';
 
-
-
 const handlers = [
   http.get('/movies/:id', ({ params }) => {
 
@@ -219,6 +217,6 @@ const handlers = [
   }),
 ];
 
-bootstrapApplication(AppComponent, appConfig)
-  .then(() => setupWorker(...handlers).start())
+setupWorker(...handlers).start()
+  .then(() => bootstrapApplication(AppComponent, appConfig))
   .catch((err) => console.error(err));
